@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container my-5">
+        <div class="text-center text-primary">
+            <h3 class="text-danger">SEGUNDO PARCIAL TEM-724</h3>
+            <p>Nombre: Mariluz Huanca Mamani</p>
+            <p>Carnet: 13607225</p>
+        </div>
+        
+    <h1 class="text-center">Gestión de productos</h1>
+    <a href="{{url_for('nuevo')}}" class="btn btn-success">Nuevo Producto</a>
+    <br>
+    <table border="1" class="table table-info">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        
+        {% for item in productos %}
+        <tr>
+            <td class="table-warning">{{item.id}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.precio}}</td>
+            <td>{{item.categoria}}</td>
+            <!-- <td class="table-success">{{item.disponible}}</td> -->
+            <td class="table-light"><a href="{{url_for('editar',id=item.id)}}" class="btn btn-primary">Editar</a></td>
+            <td class="table-light">
+                <form action="{{url_for('eliminar',id=item.id)}}" method="post">
+                    <input type="submit" value="eliminar" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesomw/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    <div class="container my-5">
+    <h1 class="text-center">Editar registro</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+    <form action="{{url_for('editar',id=registro.id)}}" method="post">
+        <!--  -->
+        <div class="form-group">
+            <label for="descrip">Nombre:</label>
+            <input type="text" class="form-control" id="descrip" name="nombre" value="{{registro['nombre']}}" required>
+          </div>
+          <div class="form-group">
+            <label for="cant">Cantidad:</label>
+            <input type="number" class="form-control" id="cant" name="cantidad" value="{{registro['cantidad']}}" required>
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" class="form-control" id="precio" name="precio" step="0.01" value="{{registro['precio']}}" required>
+          </div>
+          <div class="form-group">
+            <label>Datos</label>
+            <label for="date">Fecha de Vencimiento:</label>
+            <input type="date" class="form-control" id="date" name="fecha_vencimiento" value="{{registro['fecha_vencimiento']}}" required>
+          </div>
+          <div class="form-group">
+            <label for="cate">Categoria:</label>
+                                   <!-- misma variable -->
+        <select name="categoria" id="cate" class="form-label">
+          <!-- form-control -->
+            <option value="Bebidas" {% if registro['categoria'] == 'Bebidas' %}selected{% endif %}>Bebidas</option>
+            <option value="Golosinas" {% if registro['categoria'] == 'Golosinas' %}selected{% endif %}>Golosinas</option>
+        </select>
+          </div>
+        <!--  -->
+
+        <button type="submit" class="btn btn-primary">Enviar registro</button>
+    </form>
+</body>
+</html>
